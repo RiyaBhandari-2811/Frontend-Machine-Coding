@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Background Color Changer</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        margin-top: 50vh;
+      }
+      input[type="color"] {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>Select Color :</h3>
+      <input type="color" oninput="changeColor()" />
+    </section>
+
+    <script>
+      function changeColor() {
+        const input = document.querySelector("input");
+        document.body.style.backgroundColor = input.value;
+      }
+    </script>
+  </body>
+</html>
