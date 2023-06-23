@@ -1,0 +1,155 @@
+:root {
+    --background: #01040c;
+    /* --background: #ffff; */
+    --blue: #6c5dd3;
+    --blue-hover: #5d4cce;
+    --pink: #c62cde;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background);
+    overflow: hidden;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.container {
+    z-index: 100;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+}
+
+.box {
+    min-width: 300px;
+    min-height: 400px;
+    background-color: #fafafa;
+    border-radius: 38px;
+    text-align: center;
+    position: relative;
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    height: 110%;
+    width: 110%;
+    left: -5%;
+    top: -5%;
+    background-color: rgba(255 , 255 , 255 , 0.3);
+    border-radius: 60px;
+    box-shadow: 0px 0px 166px -31px rgpa(0,0,0,0.15) ;
+    z-index: -1;
+}
+
+h2{
+    margin: 0px 10px;
+    padding: 30px 0px;
+    letter-spacing: 2px ;
+}
+
+.content {
+    padding: 0 40px;
+}
+
+.input {
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.input label {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.input input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: medium;
+    border-bottom: 1.5px solid black;
+    text-align: center;
+}
+
+button#calculate {
+    cursor: pointer;
+    background-color: var(--blue);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: medium;
+    border-radius: 15px;
+    color: #ffff;
+    font-weight: bold;
+    width: 100%;
+    transition: background-color .1s ease;
+}
+
+button#calculate:hover{
+    background-color: var(--blue-hover);
+}
+
+.result {
+    padding: 25px 20px;
+}
+
+.result  p {
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.ans {
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#commentmsg {
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.pink {
+    background-image: radial-gradient(closest-side, var(--pink), var(--background));
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: -140px;
+    top: -160px;
+    filter: blur(120px);
+    z-index: -100;
+}
+
+.blue {
+    background-image: radial-gradient(closest-side, var(--blue), var(--background));
+    width: 500px;
+    height: 500px;
+    filter: blur(100px);
+    position: absolute;
+    bottom: -100px;
+    right: -150px;
+    z-index: -100;
+
+}
