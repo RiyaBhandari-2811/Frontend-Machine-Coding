@@ -1,0 +1,87 @@
+:root {
+    --blue: #63ccff;
+    --green: #b7facf;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-radius: 60px;
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    letter-spacing: 2px;
+}
+
+.time {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+p {
+    height: 100%;
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+    font-size: xx-large;
+    
+}
+
+span {
+    width: 100%;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+i {
+    color: #000;
+    z-index: 100;
+}
+
+.blue {
+    background-image: radial-gradient(closest-side, var(--blue), white);
+    width: 500px;
+    height: 600px;
+    position: absolute;
+    left: -100px;
+    top: -100px;
+    filter: blur(100px);
+    z-index: -100;
+}
+
+.green {
+    background-image: radial-gradient(closest-side, var(--green), white);
+    width: 500px;
+    height: 600px;
+    filter: blur(100px);
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    z-index: -100;
+}
