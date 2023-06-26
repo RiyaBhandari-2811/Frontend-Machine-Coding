@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Counter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="txtArea">
+        <textarea
+          id="txtarea"
+          cols="30"
+          rows="12"
+          placeholder="Enter text"
+          required
+          autocomplete="false"
+        ></textarea>
+      </div>
+      <div class="container">
+        <div class="word child">
+          <span id="noOfWord">00</span>
+          <span>Words</span>
+        </div>
+        <div class="char child">
+          <span id="noOfChar">00</span>
+          <span>Characters</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./app.js"></script>
+</html>
