@@ -1,12 +1,12 @@
 :root {
-    --lilac : #ecc1ed ;
-    --light-purple : #9f7ded ;
-    --black : #3c334d ;
+    --lilac: #ecc1ed;
+    --light-purple: #9f7ded;
+    --black: #3c334d;
 }
 
 body {
     background-color: var(--light-purple);
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .wrapper {
@@ -25,6 +25,7 @@ body {
     padding: 10px;
     color: var(--black);
 }
+
 .day {
     font-size: larger;
     margin: 10px;
