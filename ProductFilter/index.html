@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Filter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="filterContainer">
+      <div class="header">FILTER</div>
+      <div class="options">
+        <div class="tags">
+          <span>Tags</span>
+          <div class="tagsOptions">
+            <button class="active button" onclick="filterProduct('all')">
+              All
+            </button>
+            <button class="button" onclick="filterProduct('Female')">
+              Female
+            </button>
+            <button class="button" onclick="filterProduct('Male')">Male</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="productContainer"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
