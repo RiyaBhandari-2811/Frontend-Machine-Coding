@@ -1,0 +1,130 @@
+/* green : #3ec282 , blue : #563ec1 , red : #e72727  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background: no-repeat;
+    background: linear-gradient(139deg, #c13e3e 0%, #e6b332 100%);
+    background-size: cover;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.top {
+    padding: 10px;
+    font-weight: 400;
+}
+
+header {
+    font-weight: bolder;
+    font-size: larger;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.underline {
+    border-bottom: 1.5px solid white;
+    padding: 2px;
+}
+
+.todoInput {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#toDoInput {
+    width: 300px;
+    height: 30px;
+    padding: 7px;
+    border: none;
+    outline: none;
+}
+
+.addTodo {
+    width: 40px;
+    padding: 5px;
+    color: white;
+    background-color: #e9993d;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+.displayTodos {
+    display: flex;
+    position: relative;
+    top: 50px;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    flex-direction: column;
+
+}
+
+#todo {
+    background-color: white;
+    color: black;
+    width: 250px;
+    height: 30px;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+.todos {
+    display: flex;
+    margin: 10px;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.fa-check,
+.fa-pen-to-square,
+.fa-trash {
+    padding: 8.5px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+.fa-check {
+    background-color: #3ec282;
+}
+
+.fa-pen-to-square {
+    background-color: #563ec1 ;
+}
+
+.fa-trash {
+    background-color: #e72727;
+}
+
+.todoComplete {
+   text-decoration: line-through;
+   opacity: 0.6;
+}
+
