@@ -1,0 +1,89 @@
+:root {
+    --bg: #c2e1cf;
+    --orange: #f38800;
+    --light: #f2dbb9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    background: white;
+    width: 50vh;
+    height: 50vh;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    color: var(--bg);
+    font-weight: bolder;
+    font-size: x-large;
+    letter-spacing: 1px;
+}
+
+.main {
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+#Item {
+    border: none;
+    outline: none;
+    padding: 7px;
+    border-bottom: 2.5px double var(--bg);
+}
+
+.add {
+    padding: 5px;
+    border: none;
+    outline: none;
+    background-color: var(--bg);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check {
+    text-decoration: line-through;
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    padding: 3px;
+}
+
+.fa-check,
+.fa-trash {
+    background: var(--light);
+    color: var(--orange);
+    padding: 6px;
+    border-radius: 3px;
+    margin: 10px;
+    cursor: pointer;
+}
