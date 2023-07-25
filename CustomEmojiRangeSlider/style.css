@@ -21,7 +21,6 @@ body {
 .wrapper .section {
     height: 150px;
     width: 150px;
-    border: 1px solid black;
 }
 
 .section .emojis {
