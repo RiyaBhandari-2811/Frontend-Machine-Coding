@@ -27,7 +27,7 @@ searchBtn.onclick = async () => {
 //   inputBox.value = "";
 
   const weather = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=3d52772c4c8e04df2cd2192980c9c434`
+    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=API`
   ).then((res) => res.json());
 
   console.log(weather);
