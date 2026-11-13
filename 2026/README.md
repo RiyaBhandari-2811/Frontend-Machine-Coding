@@ -12,6 +12,17 @@ Goes from basics → advanced, and deliberately covers the four things interview
 
 ---
 
+## ▶️ Where to start
+
+You're React-strong already, so skip the Tier 0 warm-ups:
+
+1. **Tier 1** — Autocomplete → Data table → Form with validation (the staples), reading **[REACT-CONCEPTS.md](REACT-CONCEPTS.md)** alongside.
+2. Write **1 test per build** from **[TESTING.md](TESTING.md)**.
+3. Then **Tier 3** (state management) → **Tier 5** (AI UIs).
+4. Revise infra from **[BUILD-TOOLING.md](BUILD-TOOLING.md)** (Webpack, Module Federation) before senior/full-stack rounds.
+
+---
+
 ## How to use this list
 
 - **Stack:** Default to **React + TypeScript + Vite** for component rounds; **Next.js (App Router)** for anything involving SSR/RSC/AI/data. A few drills are intentionally **vanilla JS** to keep fundamentals sharp.
@@ -186,8 +197,13 @@ Now that AI is table stakes, interviewers increasingly add an LLM twist. Use the
 - [ ] **Structured output form-filler** — LLM returns JSON schema → populate a form, show validation
 - [ ] **AI summarizer with streaming + markdown render** — handle partial markdown safely
 - [ ] **Prompt playground** — system/user prompt editor, model picker, token/latency display
+- [ ] **Agent UI with reasoning trace** — show the agent's steps (thought → tool call → observation), collapsible and streaming as it runs (NetApp-style agent interfaces)
+- [ ] **RAG answer with source citations** — render the answer plus the retrieved sources it's grounded in, with relevance score and click-to-expand
+- [ ] **Eval dashboard** — compare outputs across prompts/models, show LLM-as-judge scores, latency, and token/cost per run
 
-**Concepts:** streaming (SSE vs fetch streams), backpressure & abort, rendering partial/markdown safely, latency UX (optimistic skeletons), keeping **API keys server-side only**, rate-limit & error handling, cost/token awareness.
+**Concepts:** streaming (SSE vs fetch streams), backpressure & abort, rendering partial/markdown safely, latency UX (optimistic skeletons), keeping **API keys server-side only**, rate-limit & error handling, cost/token awareness, surfacing agent reasoning & retrieval sources in the UI.
+
+> 🤖 The backend for these (agents, RAG, LLM cost optimization, MLOps) is in **[../../backend-machine-coding-prep/AI-ENGINEERING.md](../../backend-machine-coding-prep/AI-ENGINEERING.md)** — build the API there, the UI here.
 
 > Keep the secret on the server (route handler / Server Action). Never ship a provider key to the browser.
 
@@ -202,9 +218,12 @@ Now that AI is table stakes, interviewers increasingly add an LLM twist. Use the
 - [ ] **Real-time collaborative cursor / presence** — WebSocket, optimistic + reconcile
 - [ ] **Offline-first todo** — Service Worker, IndexedDB, sync-on-reconnect
 - [ ] **i18n + theming + RTL** app shell
+- [ ] **Cross-platform (React Native) basics** — shared components, pixel-perfect UI, native APIs (Tekion-style mobile roles; you have this from DCT)
 - [ ] **Micro-frontend shell** (concept) — module federation overview
 
 **Concepts:** headless components, design tokens, WebSockets, Service Workers/PWA, IndexedDB, performance budgets, bundle splitting, accessibility at scale.
+
+> 🏗️ For the **build-tooling theory interviewers drill** — Webpack (loaders/plugins/code-splitting/tree-shaking), Vite vs Webpack, **Module Federation & micro-frontends**, and monorepos/Nx — see **[BUILD-TOOLING.md](BUILD-TOOLING.md)**.
 
 ---
 
@@ -212,7 +231,7 @@ Now that AI is table stakes, interviewers increasingly add an LLM twist. Use the
 
 - **Accessibility:** semantic HTML, keyboard nav, focus management, ARIA only when needed, color contrast.
 - **Performance:** avoid unnecessary re-renders, memo wisely, lazy-load, virtualize long lists, measure (React DevTools Profiler, Lighthouse).
-- **Testing:** React Testing Library (user-centric), a couple of unit tests for logic, think about what you'd test even if you don't write it.
+- **Testing:** React Testing Library (user-centric), a couple of unit tests for logic, think about what you'd test even if you don't write it. → full patterns (RTL/Vitest/MSW/Playwright, TDD/BDD) in **[TESTING.md](TESTING.md)**.
 - **TypeScript:** props typed, discriminated unions for variants, no `any`.
 - **Error & loading states:** every async path has loading / empty / error UI.
 - **Clean code:** small components, custom hooks for logic, clear naming, no dead code.
