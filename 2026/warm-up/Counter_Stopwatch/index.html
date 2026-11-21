@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  PROBLEM STATEMENT:
+  ==================
+  Build a Counter/Stopwatch application with the following features:
+  
+  REQUIREMENTS:
+  1. Display current count/time value
+  2. START button: Begin incrementing the counter (use setInterval)
+  3. PAUSE button: Pause the counter without resetting
+  4. RESET button: Reset counter to 0 and stop the interval
+  5. Proper setInterval cleanup to prevent memory leaks and multiple intervals running
+  
+  ACCEPTANCE CRITERIA:
+  - Counter increments by 1 every second when START is clicked
+  - PAUSE stops the counter but preserves the current value
+  - RESET clears the counter to 0 and stops any running interval
+  - Only one interval should run at a time (no duplicate intervals)
+  - Intervals must be properly cleaned up to avoid memory leaks
+  - UI updates in real-time
+  
+  TECHNICAL NOTES:
+  - Use setInterval for timing
+  - Ensure proper cleanup with clearInterval
+  - Store interval ID to manage active intervals
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter Stopwatch</title>
+</head>
+
+<body>
+    <h1>Counter/Stopwatch</h1>
+    
+    <div id="curr-counter">0</div>
+    <div id="counter-actions">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+    </div>
+</body>
+
+<script>
+    // ============================================================
+    // APPROACH 1: Using addEventListener with separate functions
+    // ============================================================
+    
+    let currCounter = document.getElementById("curr-counter");
+    let startBtn = document.getElementById("start");
+    let pauseBtn = document.getElementById("pause");
+    let resetBtn = document.getElementById("reset");
+    
+    let counter = 0;
+    let intervalId = null;  // Store interval ID for cleanup
+    
+    // METHOD 1A: Separate named functions
+    function startCounter() {
+        // Prevent multiple intervals
+        if (intervalId !== null) return;
+        
+        intervalId = setInterval(() => {
+            counter++;
+            currCounter.innerHTML = counter;
+        }, 1000);
+    }
+    
+    function pauseCounter() {
+        if (intervalId !== null) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+    
+    function resetCounter() {
+        clearInterval(intervalId);
+        intervalId = null;
+        counter = 0;
+        currCounter.innerHTML = 0;
+    }
+    
+    // Using addEventListener (APPROACH 1)
+    startBtn.addEventListener("click", startCounter);
+    pauseBtn.addEventListener("click", pauseCounter);
+    resetBtn.addEventListener("click", resetCounter);
+    
+    
+    // ============================================================
+    // APPROACH 2: Using inline arrow functions with addEventListener
+    // ============================================================
+    
+    /*
+    startBtn.addEventListener("click", () => {
+        if (intervalId !== null) return;
+        intervalId = setInterval(() => {
+            counter++;
+            currCounter.innerHTML = counter;
+        }, 1000);
+    });
+    
+    pauseBtn.addEventListener("click", () => {
+        if (intervalId !== null) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    });
+    
+    resetBtn.addEventListener("click", () => {
+        clearInterval(intervalId);
+        intervalId = null;
+        counter = 0;
+        currCounter.innerHTML = 0;
+    });
+    */
+    
+    
+    // ============================================================
+    // APPROACH 3: Using onclick attribute (inline HTML)
+    // ============================================================
+    
+    /*
+    // In HTML:
+    // <button onclick="startCounter()">Start</button>
+    // <button onclick="pauseCounter()">Pause</button>
+    // <button onclick="resetCounter()">Reset</button>
+    
+    // Then functions defined globally above work with onclick
+    */
+    
+    
+    // ============================================================
+    // APPROACH 4: Using object-based state management
+    // ============================================================
+    
+    /*
+    const timerState = {
+        counter: 0,
+        intervalId: null,
+        
+        start() {
+            if (this.intervalId !== null) return;
+            this.intervalId = setInterval(() => {
+                this.counter++;
+                currCounter.innerHTML = this.counter;
+            }, 1000);
+        },
+        
+        pause() {
+            if (this.intervalId !== null) {
+                clearInterval(this.intervalId);
+                this.intervalId = null;
+            }
+        },
+        
+        reset() {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+            this.counter = 0;
+            currCounter.innerHTML = 0;
+        }
+    };
+    
+    startBtn.addEventListener("click", () => timerState.start());
+    pauseBtn.addEventListener("click", () => timerState.pause());
+    resetBtn.addEventListener("click", () => timerState.reset());
+    */
+    
+    
+    // ============================================================
+    // APPROACH 5: Using a Class-based approach
+    // ============================================================
+    
+    /*
+    class Counter {
+        constructor(displayElement) {
+            this.displayElement = displayElement;
+            this.counter = 0;
+            this.intervalId = null;
+        }
+        
+        start() {
+            if (this.intervalId !== null) return;
+            this.intervalId = setInterval(() => {
+                this.counter++;
+                this.displayElement.innerHTML = this.counter;
+            }, 1000);
+        }
+        
+        pause() {
+            if (this.intervalId !== null) {
+                clearInterval(this.intervalId);
+                this.intervalId = null;
+            }
+        }
+        
+        reset() {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+            this.counter = 0;
+            this.displayElement.innerHTML = 0;
+        }
+    }
+    
+    const timerInstance = new Counter(currCounter);
+    startBtn.addEventListener("click", () => timerInstance.start());
+    pauseBtn.addEventListener("click", () => timerInstance.pause());
+    resetBtn.addEventListener("click", () => timerInstance.reset());
+    */
+
+</script>
+
+</html>
