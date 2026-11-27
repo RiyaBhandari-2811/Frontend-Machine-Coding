@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
+
+:root {
+    --cards-background: #f4eae0;
+    --lilac: #e1d2e7;
+    --green: #acbeae;
+    --orange: #e27e5a;
+    --yellow: #e3a74a;
+    --peach: #cc9087;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+body {
+    background-color: var(--lilac);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20vh;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: var(--cards-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 200px;
+    margin: 15px;
+    font-size: xx-large;
+    padding: 20px;
+    border-bottom: 1.5px solid black;
+    border-top: 1.5px solid black;
+    border-left: 1.5px solid black;
+    border-right: 1.5px solid black;
+    border-radius: 10px;
+
+}
+
+i {
+    margin: 10px;
+    font-size: xx-large;
+    color: var(--green);
+}
+
+span[data-val] {
+    font-weight: bolder;
+    letter-spacing: 2px;
+    font-size: 40px;
+    color: #e3a74a
+}
+
+.card span:last-child {
+    font-size: medium;
+    margin: 5px;
+    color: var(--peach);
+    font-weight: bold;
+    letter-spacing: 2px;
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  PROBLEM STATEMENT:
+  ==================
+  Build a Stopwatch application that counts UP from 0:
+  
+  REQUIREMENTS:
+  1. Display time in MM:SS:MS format (minutes:seconds:milliseconds)
+  2. START button: Begin counting up
+  3. PAUSE button: Pause without resetting
+  4. RESET button: Reset to 00:00:00
+  5. Proper setInterval cleanup to prevent memory leaks
+  
+  ACCEPTANCE CRITERIA:
+  - Time increments continuously when START is clicked
+  - PAUSE stops the timer but preserves the current value
+  - RESET clears to 00:00:00 and stops the interval
+  - Only one interval should run at a time
+  - UI updates smoothly
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            min-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .stopwatch-display {
+            font-size: 4em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 40px 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 5px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 110px;
+        }
+
+        #start {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #start:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        #pause {
+            background-color: #ff9800;
+            color: white;
+        }
+
+        #pause:hover {
+            background-color: #e68900;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        #reset {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #reset:hover {
+            background-color: #da190b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>⏱️ Stopwatch</h1>
+        
+        <div class="stopwatch-display" id="stopwatch-display">00:00:00</div>
+        
+        <div class="button-group">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // STOPWATCH IMPLEMENTATION - Counts UP from 0
+        // ============================================================
+
+        const display = document.getElementById("stopwatch-display");
+        const startBtn = document.getElementById("start");
+        const pauseBtn = document.getElementById("pause");
+        const resetBtn = document.getElementById("reset");
+
+        let elapsedTime = 0; // in milliseconds
+        let intervalId = null;
+        let isRunning = false;
+
+        // Format time as MM:SS:MS
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            const milliseconds = Math.floor((ms % 1000) / 10); // Convert to centiseconds
+
+            return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }
+
+        // Start the stopwatch
+        function startStopwatch() {
+            if (isRunning) return; // Prevent multiple intervals
+
+            isRunning = true;
+            const startTime = Date.now() - elapsedTime;
+
+            intervalId = setInterval(() => {
+                elapsedTime = Date.now() - startTime;
+                display.innerHTML = formatTime(elapsedTime);
+            }, 10); // Update every 10ms for smooth animation
+        }
+
+        // Pause the stopwatch
+        function pauseStopwatch() {
+            if (intervalId !== null) {
+                clearInterval(intervalId);
+                intervalId = null;
+                isRunning = false;
+            }
+        }
+
+        // Reset the stopwatch
+        function resetStopwatch() {
+            clearInterval(intervalId);
+            intervalId = null;
+            elapsedTime = 0;
+            isRunning = false;
+            display.innerHTML = "00:00:00";
+        }
+
+        // Event listeners
+        startBtn.addEventListener("click", startStopwatch);
+        pauseBtn.addEventListener("click", pauseStopwatch);
+        resetBtn.addEventListener("click", resetStopwatch);
+    </script>
+</body>
+
+</html>
