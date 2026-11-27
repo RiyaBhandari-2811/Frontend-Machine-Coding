@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coin Toss</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <p>Coin Toss</p>
+      </div>
+      <!-- Coin -->
+      <div class="coin">
+        <div class="head">
+          <img src="head.png" alt="head" />
+        </div>
+        <div class="tail">
+          <img src="tail.png" alt="tail" />
+        </div>
+      </div>
+
+      <!-- Score Board -->
+      <div class="score-board">
+        <p id="head-count">Head - 0</p>
+        <p id="tail-count">Tail - 0</p>
+      </div>
+
+      <!-- Functional Buttons -->
+      <div class="buttons">
+        <button id="flip-button">Flip Coin</button>
+        <button id="reset-button">Reset</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
