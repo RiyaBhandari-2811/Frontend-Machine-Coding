@@ -6,9 +6,10 @@
 3. Logical Operators
 4. Assignment Operators
 5. Ternary Operator
-6. If/Else Statements
-7. Switch Statements
-8. Comparison Quirks
+6. Modern Operators (ES2020+)
+7. If/Else Statements
+8. Switch Statements
+9. Comparison Quirks
 
 ---
 
@@ -230,7 +231,169 @@ else result2 = "small";
 
 ---
 
-## 6. If/Else Statements
+## 6. Modern Operators (ES2020+)
+
+### Nullish Coalescing Operator (??)
+```javascript
+// ?? returns right operand if left is null or undefined
+// Unlike || which checks for falsy values
+
+let x = null;
+let y = x ?? "default";
+console.log(y);  // "default"
+
+let a = 0;
+let b = a ?? "default";
+console.log(b);  // 0 (0 is not null/undefined)
+
+let c = "";
+let d = c ?? "default";
+console.log(d);  // "" (empty string is not null/undefined)
+
+// Practical use: provide default values
+let userInput = null;
+let value = userInput ?? "No input provided";
+
+// vs OR operator
+let name = userInput || "Guest";  // Also works, but treats 0, "", false as falsy
+```
+
+### Optional Chaining Operator (?.)
+```javascript
+// Safely access nested object properties without checking each level
+
+let user = {
+    name: "John",
+    address: {
+        city: "NYC"
+    }
+};
+
+// Without optional chaining (error prone)
+// let city = user.address.city;  // Works
+// let zipCode = user.address.zipCode;  // undefined (safe)
+// let country = user.country.name;  // ERROR: Cannot read property of undefined
+
+// With optional chaining (safe)
+let city = user?.address?.city;      // "NYC"
+let zipCode = user?.address?.zipCode; // undefined (doesn't error)
+let country = user?.country?.name;   // undefined (doesn't error)
+
+// Optional chaining with function calls
+let user2 = {
+    getName() { return "John"; }
+};
+
+let name1 = user2?.getName?.();  // "John"
+let name2 = user2?.getAge?.();   // undefined (doesn't error)
+
+// Optional chaining with array/object access
+let users = [{ name: "John" }, { name: "Jane" }];
+let firstUser = users?.[0];      // { name: "John" }
+let invalidUser = users?.[10];   // undefined
+
+let obj = { key: "value" };
+let val = obj?.["key"];          // "value"
+let missing = obj?.["missing"];  // undefined
+```
+
+### Nullish Coalescing Assignment (??=)
+```javascript
+// Assigns only if variable is null or undefined
+
+let x = null;
+x ??= "default";
+console.log(x);  // "default"
+
+let y = 0;
+y ??= "default";
+console.log(y);  // 0 (0 is not null/undefined)
+
+let z = "hello";
+z ??= "default";
+console.log(z);  // "hello"
+
+// Practical use: set default values in objects
+let config = {
+    timeout: null,
+    retries: 3
+};
+
+config.timeout ??= 5000;  // Sets timeout to 5000
+config.retries ??= 1;     // Keeps retries as 3
+```
+
+### Logical Assignment Operators (&&= and ||=)
+```javascript
+// &&= assigns only if left operand is truthy
+let x = 10;
+x &&= 20;
+console.log(x);  // 20 (x was truthy, so assigned)
+
+let y = 0;
+y &&= 20;
+console.log(y);  // 0 (y was falsy, so not assigned)
+
+// ||= assigns only if left operand is falsy
+let a = null;
+a ||= "default";
+console.log(a);  // "default" (a was falsy)
+
+let b = "hello";
+b ||= "default";
+console.log(b);  // "hello" (b was truthy)
+
+// Practical use: conditional updates
+let user = { isActive: true };
+user.isActive &&= checkPermissions();  // Only call if isActive is true
+
+let config = { timeout: null };
+config.timeout ||= 5000;  // Set default if not set
+```
+
+### Comparison Table: ??, ||, and ?. 
+
+| Operator | Use Case | Checks |
+|----------|----------|--------|
+| `??` | Default for null/undefined | Only null/undefined |
+| `\|\|` | Default for any falsy | 0, "", false, null, undefined, NaN |
+| `?.` | Safe property access | Returns undefined if left is null/undefined |
+
+```javascript
+// Example showing differences
+let value = 0;
+
+console.log(value || 10);    // 10 (treats 0 as falsy)
+console.log(value ?? 10);    // 0 (treats 0 as valid)
+console.log(value?.toString?.());  // "0" (safe access)
+```
+
+### Chaining Modern Operators
+```javascript
+// Combine multiple modern operators
+let user = {
+    profile: {
+        name: "John"
+    }
+};
+
+// Get nested value with defaults
+let displayName = user?.profile?.name ?? "Guest";
+console.log(displayName);  // "John"
+
+// Get from API with defaults
+let response = null;
+let data = response?.data?.users ?? [];
+console.log(data);  // []
+
+// Safe function call with fallback
+let result = user?.getAge?.() ?? 18;
+console.log(result);  // 18 (if getAge doesn't exist)
+```
+
+---
+
+## 7. If/Else Statements
 
 ### Basic Syntax
 ```javascript
